@@ -1,0 +1,61 @@
+﻿@page
+@model Projeto.Pages.ProdutosCRUD.IndexModel
+
+@{
+    ViewData["Title"] = "Listagem de produto";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a class="btn btn-success" asp-page="Create">Novo Produto</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Produto[0].Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Produto[0].Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Produto[0].Autor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Produto[0].Preco)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Produto[0].Estoque)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Produto) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Autor)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estoque)
+            </td>
+            <td>
+                <a class="btn btn-primary mx-2" asp-page="./Edit" asp-route-id="@item.IdProduto">Editar</a> |
+                <a  class="btn btn-primary"asp-page="./Details" asp-route-id="@item.IdProduto">Detalhes</a> |
+                <a  class="btn btn-danger"asp-page="./Delete" asp-route-id="@item.IdProduto">Deletar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
